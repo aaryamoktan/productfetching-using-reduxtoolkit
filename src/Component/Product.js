@@ -8,21 +8,31 @@ export const Product = ()=>
   const dispatch = useDispatch();
 
   const [prducts,setProducts] = useState([]);
+  const [isloading,setIsloading] = useState(true);
   useEffect(()=>
   {
       fetch("https://fakestoreapi.com/products")
       .then(data=>data.json())
-      .then(result=>setProducts(result))    
+      .then(result=>setProducts(result))
+      setIsloading(false)    
   },[]);
   const addtocart =(product)=>
   {
     dispatch(addProduct(product))
   }
-  
+  if(isloading)
+  {
+    return(
+      <>
+        <h1>loading......</h1>
+      </>
+    )
+  }
  
     return(
         <> 
         <div className='cardsContainer'>
+        
         {prducts.map((product=>{
           return(<>
           

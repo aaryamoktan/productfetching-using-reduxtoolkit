@@ -1,20 +1,22 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useDispatch } from 'react-redux';
 import { removeProduct } from '../store/careSlice';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 const Cart = () => {
+  const productCart = useSelector(state=>state.cart)
   const Dispatch = useDispatch();
-  const productcart = useSelector(state=>state.cart)
-  const removeCart =(product)=>
+  const removeCart = (product)=>
   {
     Dispatch(removeProduct(product))
   }
+  const product=[]
   return (
     <div className='cardsContainer'>
-    {
-      productcart.map((product)=>
+       
+       {
+      productCart.map((product)=>
       {
         return(<>
         
@@ -33,9 +35,8 @@ const Cart = () => {
 
         </>)
       })
-    }
-      
-    </div>
+       }
+          </div>
   )
 }
 
